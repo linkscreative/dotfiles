@@ -1,0 +1,7 @@
+[user]
+	email = jamescleveland@gmail.com
+	name = James Cleveland
+[diff]
+	external = /home/james/Dropbox/Development/gitscripts/diff.py
+[color]
+	ui = true
