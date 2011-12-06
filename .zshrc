@@ -15,8 +15,7 @@
 # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
 
-# Set prompt (white and purple, nothing too fancy)
-PS1=$'%{\e[0;37m%}%B%*%b %{\e[0;35m%}%m:%{\e[0;37m%}%~ %(!.#.\$) %{\e[00m%}'
+PS1=$'%{\e[1;37m%}%n%{\e[0;35m%}@%{\e[0;31m%}%m:%{\e[0;37m%}%~ %{\e[1;30m%}%(!.#.\$) %{\e[00m%}'
 
 # Set less options
 if [[ -x $(which less) ]]
