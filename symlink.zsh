@@ -13,11 +13,14 @@ manifest=(
 )
 
 relink () {
+    real=$BASE/$1
+    real=${real:a}
     new=$BASE/../$1
+    new=${new:a}
     newdir=${new:h}
     [[ -d $newdir ]] || mkdir -p $newdir
-    unlink $new || rm $new
-    ln -s $BASE/$1 $new && echo "linked $1 to $new"
+    [[ -f $new ]] && ( unlink $new || rm $new )
+    ln -s $real $new && echo "linked $real to $new"
 }
 [[ -f $BASE/../.tmux.hotkey ]] || cp $BASE/.tmux.hotkey.sample $BASE/../.tmux.hotkey
 for x in $manifest
