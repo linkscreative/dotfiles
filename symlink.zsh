@@ -20,7 +20,7 @@ relink () {
     newdir=${new:h}
     [[ -d $newdir ]] || mkdir -p $newdir
     [[ -f $new ]] && ( unlink $new || rm $new )
-    ln -s $real $new && echo "linked $real to $new"
+    ln -s $real $new && echo "linked $new -> $real"
 }
 [[ -f $BASE/../.tmux.hotkey ]] || cp $BASE/.tmux.hotkey.sample $BASE/../.tmux.hotkey
 for x in $manifest
