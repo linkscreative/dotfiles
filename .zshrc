@@ -35,6 +35,8 @@ setopt nobeep
 setopt pushdminus
 setopt autopushd
 
+setopt PUSHD_IGNORE_DUPS
+
 # Say how long a command took, if it took more than 30 seconds
 export REPORTTIME=30
 
