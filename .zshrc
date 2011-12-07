@@ -1,21 +1,7 @@
-# My .zshrc file
-#
-# Written by Matthew Blissett.
-#
-# Latest version available from 
-#
-# Some functions taken from various web sites/mailing lists, others written
-# myself.
-#
-# Last updated 2011-03-09
-#
-# Released into the public domain.
-#
-
 # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
 
-PS1=$'%{\e[1;37m%}%n%{\e[0;35m%}@%{\e[0;31m%}%m:%{\e[0;37m%}%~ %{\e[1;30m%}%(!.#.\$) %{\e[00m%}'
+PS1=$'%{\e[0;32m%}%T %{\e[1;37m%}%n%{\e[0;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[0;37m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
 
 # Set less options
 if [[ -x $(which less) ]]
@@ -29,13 +15,9 @@ then
     fi
 fi
 
-# Set default editor
-if [[ -x $(which emacs) ]]
-then
-    export EDITOR="emacs"
-    export USE_EDITOR=$EDITOR
-    export VISUAL=$EDITOR
-fi
+export EDITOR="vim"
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
 
 # Zsh settings for history
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
@@ -48,11 +30,12 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 
+setopt nobeep
 # Say how long a command took, if it took more than 30 seconds
 export REPORTTIME=30
 
 # Zsh spelling correction options
-#setopt CORRECT
+setopt CORRECT
 #setopt DVORAK
 
 # Prompts for confirmation after 'rm *' etc
@@ -100,15 +83,6 @@ alias "tree=tree -A -I 'CVS|*~'"
 # Useful KDE integration (see later for definition of z)
 alias 'k=z kate -u' # -u is reuse existing session if possible
 alias 'q=z kfmclient openURL' # Opens (or executes a .desktop) arg1 in Konqueror
-
-# These are useful with the Dvorak keyboard layout
-alias 'h=ls'
-alias 'ha=la'
-alias 'hh=ll'
-alias 'hq=lq'
-alias 'hr=lr'
-alias 'hrt=lrt'
-alias 'hrs=lrs'
 
 alias 'tm=tmux att -t0'
 # Play safe!
@@ -174,10 +148,6 @@ f() {
     echo "find . -iname \"*$1*\""
     find . -iname "*$1*"
 }
-
-# Remap Dvorak-Qwerty quickly
-alias 'aoeu=setxkbmap gb' # (British keyboard layout)
-alias 'asdf=setxkbmap gb dvorak 2> /dev/null || setxkbmap dvorak gb 2> /dev/null || setxkbmap dvorak'
 
 # Update config files (master copies stored on server)
 alias rsync-config='rsync -av --delete blissett.me.uk:Config/ ~/.matt-config/'
@@ -279,7 +249,7 @@ zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' glob 0
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list '+m:{a-z}={A-Z} r:|[._-]=** r:|=**' '' '' '+m:{a-z}={A-Z} r:|[._-]=** r:|=**'
+zstyle ':completion:*' matcher-list '+m:{a-z}={A-Z} r:|[._-]=** r:|=**' '+m:{a-z}={A-Z} r:|[._-]=** r:|=**'
 zstyle ':completion:*' max-errors 1 numeric
 zstyle ':completion:*' substitute 0
 zstyle :compinstall filename "$HOME/.zshrc"
