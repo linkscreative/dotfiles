@@ -1,0 +1,14 @@
+alias 'tealc=ssh tealc'
+alias 'carter=ssh carter'
+
+# Ixxy
+alias 'web39=ssh web39'
+alias 'web39_sv=ssh web39 /home/ldr/webapps/nginx/bin/supervisorctl -c /home/ldr/webapps/nginx/conf/supervisord.conf'
+alias 'ixxy1=ssh ixxy1'
+
+# TEC
+alias 'tec=ssh tec'
+
+# Ben
+
+alias 'imga=ssh imga'
