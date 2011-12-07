@@ -31,6 +31,7 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 
 setopt nobeep
+setopt pushdminus
 setopt autopushd
 
 # Say how long a command took, if it took more than 30 seconds
