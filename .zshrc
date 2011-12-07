@@ -38,10 +38,6 @@ export REPORTTIME=30
 setopt CORRECT
 #setopt DVORAK
 
-# Prompts for confirmation after 'rm *' etc
-# Helps avoid mistakes like 'rm * o' when 'rm *.o' was intended
-setopt RM_STAR_WAIT
-
 # Background processes aren't killed on exit of shell
 setopt AUTO_CONTINUE
 
@@ -80,15 +76,8 @@ alias 'vnice=nice -n 20 ionice -c 3'
 alias 'get_iplayer=get_iplayer --nopurge'
 alias "tree=tree -A -I 'CVS|*~'"
 
-# Useful KDE integration (see later for definition of z)
-alias 'k=z kate -u' # -u is reuse existing session if possible
-alias 'q=z kfmclient openURL' # Opens (or executes a .desktop) arg1 in Konqueror
 
 alias 'tm=tmux att -t0'
-# Play safe!
-#alias 'rm=rm -i'
-#alias 'mv=mv -i'
-#alias 'cp=cp -i'
 
 # For convenience
 alias 'mkdir=mkdir -p'
@@ -123,12 +112,7 @@ alias -g S='| sort'
 alias -g T='| tail'
 alias -g N='> /dev/null'
 alias -g E='2> /dev/null'
-
-
-# SSH to shell[1234].doc.ic.ac.uk at random
-sshdoc() {
-    ssh mrb04@shell$(($RANDOM % 4 + 1)).doc.ic.ac.uk $*
-}
+alias -g SPRUNGE='| curl -F "sprunge=<-" http://sprunge.us'
 
 # Automatically background processes (no output to terminal etc)
 alias 'z=echo $RANDOM > /dev/null; zz'
@@ -137,24 +121,11 @@ zz () {
     $* &> "/tmp/z-$1-$RANDOM" &!
 }
 
-# Aliases to use this
-# Use e.g. 'command gv' to avoid
-for i in acroread akregator amarok chromium-browser easytag eclipse firefox gaim gimp gpdf gv k3b kate kmail konqueror kontact kopete kpdf kwrite okular oobase oocalc ooffice oowriter opera pan thunderbird; do
-    alias "$i=z $i"
-done
-
 # Quick find
 f() {
     echo "find . -iname \"*$1*\""
     find . -iname "*$1*"
 }
-
-# Update config files (master copies stored on server)
-alias rsync-config='rsync -av --delete blissett.me.uk:Config/ ~/.matt-config/'
-
-# Clear konsole history
-#alias 'zaph=dcop $KONSOLE_DCOP_SESSION clearHistory' For KDE3
-#alias 'zaph=qdbus org.kde.konsole $KONSOLE_DBUS_SESSION' ... KDE4 can't do this yet?
 
 # When directory is changed set xterm title to host:dir
 chpwd() {
@@ -192,55 +163,8 @@ chpwd () {
 }
 cd . &> /dev/null
 
-# For quickly plotting data with gnuplot.  Arguments are files for 'plot "" with lines'.
-plot () {
-    echo -n '(echo set term png; '
-    echo -n 'echo -n plot \"'$1'\" with lines; '
-    for i in $*[2,$#@]; echo -n 'echo -n , \"'$i'\" with lines; '
-    echo 'echo ) | gnuplot | display png:-'
-
-    (
-	echo "set term png"
-	echo -n plot \"$1\" with lines
-	for i in $*[2,$#@]; echo -n "," \"$i\" "with lines"
-	) | gnuplot | display png:-
-}
-# Persistant gnuplot (can be resized etc)
-plotp () {
-    echo -n '(echo -n plot \"'$1'\" with lines; '
-    for i in $*[2,$#@]; echo -n 'echo -n , \"'$i'\" with lines; '
-    echo 'echo ) | gnuplot -persist'
-
-    (
-	echo -n plot \"$1\" with lines
-	for i in $*[2,$#@]; echo -n "," \"$i\" "with lines"
-	echo
-	) | gnuplot -persist
-}
-
-# CD into random directory in PWD
-cdrand () {
-	all=( *(/) )
-	rand=$(( 1 + $RANDOM % $#all ))
-	cd $all[$rand]
-}
-
-# Rotate a jpeg, losslessly
-jrotate-r () {
-    for i in $*; do
-	exiftran -9 -b -i $i
-    done
-}
-
 # MySQL prompt
 export MYSQL_PS1="\R:\m:\s \h> "
-
-# Print some stuff
-date
-if [[ -x `which fortune` ]]; then
-    echo
-    fortune -a 2> /dev/null
-fi
 
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _match
@@ -259,7 +183,6 @@ compinit
 # End of lines added by compinstall
 
 zstyle -d users
-#zstyle ':completion:*' users mrb04 matt
 zstyle ':completion:*:*:*:users' ignored-patterns \
     adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
     named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
@@ -277,11 +200,6 @@ zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-
-# Filename suffixes to ignore during completion (except after rm command)
-# This doesn't seem to work
-#zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro' '*~'
-#zstyle ':completion:*:(all-|)files' file-patterns '(*~|\\#*\\#):backup-files' 'core(|.*):core\ files' '*:all-files'
 
 zstyle ':completion:*:*:rmdir:*' file-sort time
 
@@ -324,10 +242,6 @@ autoload insert-files
 zle -N insert-files
 bindkey '^Xf' insert-files
 
-# Play tetris
-#autoload -U tetris
-#zle -N tetris
-#bindkey '^X^T' tetris
 
 # xargs but zargs
 autoload -U zargs
