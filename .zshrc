@@ -313,7 +313,7 @@ fi
 # Get round annoyance in Gentoo
 # (No idea if this is needed any more)
 [[ -f $HOME/.zshenv ]] && source $HOME/.zshenv
-
+[[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
 export PATH=/var/lib/gems/1.8/bin:$PATH
 export PATH=/opt/android-sdk/platform-tools:$PATH
 
