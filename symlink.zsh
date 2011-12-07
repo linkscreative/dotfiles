@@ -9,7 +9,6 @@ manifest=(
     .vimrc
     .zsh_ssh_aliases
     .ncmpcpp/config
-    .ssh/config
 )
 
 relink () {
