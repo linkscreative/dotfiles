@@ -193,7 +193,7 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
     dictd  gnats  identd  irc  man  messagebus  postfix  proxy  sys  www-data \
     avahi Debian-exim hplip list cupsys haldaemon ntpd proftpd statd
 
-zstyle ':completion:*' hosts $( cat $HOME/.hosts* )
+[[ -f $HOME/.hosts* ]] && zstyle ':completion:*' hosts $( cat $HOME/.hosts* )
 
 zstyle ':completion:*:cd:*' ignored-patterns '(*/)#lost+found' '(*/)#CVS'
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
@@ -309,7 +309,7 @@ fi
 
 # Get round annoyance in Gentoo
 # (No idea if this is needed any more)
-source $HOME/.zshenv
+[[ -f $HOME/.zshenv ]] && source $HOME/.zshenv
 
 export PATH=/var/lib/gems/1.8/bin:$PATH
 export PATH=/opt/android-sdk/platform-tools:$PATH
