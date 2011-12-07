@@ -2,6 +2,8 @@
 [[ -z "$PS1" ]] && return
 
 PS1=$'%{\e[0;32m%}%T %f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
+
+#PS1=$'%{\e[1;37m%}%n%{\e[1;00m%}@%{\e[1;37m%}%m%f:%f%~ %{\e[1;30m%}%# %{\e[00m%}'
 # Set less options
 if [[ -x $(which less) ]]
 then
@@ -186,6 +188,7 @@ compinit
 # End of lines added by compinstall
 
 zstyle -d users
+#zstyle ':completion:*:*:*:users' menu yes select
 zstyle ':completion:*:*:*:users' ignored-patterns \
     adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
     named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
@@ -349,32 +352,3 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[CtrlRight]}"   ]]  && bindkey  "${key[CtrlRight]}"   forward-word
 
 alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
-
-
-
-function _clearbelowprompt() {
-  zle -M ""
-}
-
-function _show_surroundings() {
-  #zle -M ${"$(eval 'for a in $history[(I)<'$((HISTNO-10))-$((HISTNO+10))'>]; do if [[ $a -eq $HISTNO ]]; then printf '\''\n%s: %s\n\n'\'' $a $history[$a]; else; printf '\''%s: %s\n'\'' $a $history[$a]; fi; done')"}
-  #zle -M ${"$(eval 'for a in $history[(I)<'$((HISTNO-10))-$((HISTNO+10))'>]; do printf '\''%s: %s\n'\'' $a $history[$a]; done')"}
-  (( $LINES < 5 )) && { zle -M ""; return }
-  local bound line i
-  typeset -a output
-  typeset -A star
-  bound=${NUMERIC:-$(( LINES < 10 ? 1 : LINES / 3 ))}
-  star[$HISTNO]=">> "
-  for ((i = HISTNO - $bound; i < HISTNO + $bound && i < HISTCMD; i++)); do
-
-    line="${${:-$star[$i]$i: $history[$i]}[1,COLUMNS-1]}"
-    while (( ${(m)#line} > COLUMNS-1 )); do
-      line[-1]=
-      #for broken zsh#line=$line[1,-2]
-    done
-    output=( $line $output )
-  done
-  zle -M ${(pj:\n:)output}
-}
-zle -N zle-isearch-update _show_surroundings
-zle -N zle-isearch-exit _clearbelowprompt
