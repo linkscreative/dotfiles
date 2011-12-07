@@ -364,8 +364,9 @@ function _show_surroundings() {
   typeset -a output
   typeset -A star
   bound=${NUMERIC:-$(( LINES < 10 ? 1 : LINES / 3 ))}
-  star[$HISTNO]="*"
+  star[$HISTNO]=">> "
   for ((i = HISTNO - $bound; i < HISTNO + $bound && i < HISTCMD; i++)); do
+
     line="${${:-$star[$i]$i: $history[$i]}[1,COLUMNS-1]}"
     while (( ${(m)#line} > COLUMNS-1 )); do
       line[-1]=
