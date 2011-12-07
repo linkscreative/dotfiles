@@ -7,7 +7,6 @@ manifest=(
     .zshenv
     .zshrc
     .vimrc
-    .zsh_ssh_aliases
     .ncmpcpp/config
 )
 
