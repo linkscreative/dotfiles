@@ -94,7 +94,6 @@ alias 'cd..=cd ..'
 alias -s ps=q
 alias -s html=q
 
-source ~/.zsh_ssh_aliases
 # PDF viewer (just type 'file.pdf')
 if [[ -x `which kpdf` ]]; then
     alias -s 'pdf=kfmclient exec'
