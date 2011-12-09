@@ -8,6 +8,7 @@ manifest=(
     .zshrc
     .vimrc
     .ncmpcpp/config
+    .zsh
 )
 
 relink () {

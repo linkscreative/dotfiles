@@ -1,9 +1,10 @@
 # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
 
-PS1=$'%{\e[0;32m%}%T %f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
 
-#PS1=$'%{\e[1;37m%}%n%{\e[1;00m%}@%{\e[1;37m%}%m%f:%f%~ %{\e[1;30m%}%# %{\e[00m%}'
+PROMPT=$'%{\e[0;32m%}%T %f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
+
+#PS1=$'%{\e[1;37m%}%n%{\e[1;00m%}@%{\e[1;37m%}%m%f:%{\e[0;37m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
 # Set less options
 if [[ -x $(which less) ]]
 then
@@ -34,7 +35,7 @@ setopt HIST_VERIFY
 setopt nobeep
 setopt pushdminus
 setopt autopushd
-
+setopt extendedglob
 setopt PUSHD_IGNORE_DUPS
 
 # Say how long a command took, if it took more than 30 seconds
@@ -310,10 +311,12 @@ then
     . $HOME/.zshrc-$(hostname -d)
 fi
 
-# Get round annoyance in Gentoo
-# (No idea if this is needed any more)
 [[ -f $HOME/.zshenv ]] && source $HOME/.zshenv
 [[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
+[[ -f $HOME/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $HOME/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh ]] && source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
+[[ -f $HOME/.zsh/git/functions/zgitinit ]] && source $HOME/.zsh/git/functions/zgitinit
+
 export PATH=/var/lib/gems/1.8/bin:$PATH
 export PATH=/opt/android-sdk/platform-tools:$PATH
 
@@ -352,3 +355,4 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[CtrlRight]}"   ]]  && bindkey  "${key[CtrlRight]}"   forward-word
 
 alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
+
