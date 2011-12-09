@@ -66,7 +66,7 @@ fi
 
 # Short command aliases
 alias 'ls=ls --group-directories-first --color'
-alias 'l=ls'
+alias 'l=ls -dF'
 alias 'la=ls -Alh'
 alias 'll=ls -lh'
 alias 'lq=ls -Q'
