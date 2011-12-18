@@ -5,7 +5,6 @@ BASE=${BASE:a}
 cd $BASE && git pull origin master
 
 manifest=(
-    .gitconfig
     .tmux.conf
     .zshenv
     .zshrc
@@ -27,9 +26,9 @@ relink () {
 
 [[ -f $BASE/../.tmux.hotkey ]] || cp $BASE/.tmux.hotkey.sample $BASE/../.tmux.hotkey
 
-git clone git://github.com/zsh-users/zsh-history-substring-search.git $BASE/.zsh/history-substring-search 1&>/dev/null || (cd $BASE/.zsh/history-substring-search && git pull origin master)
+git clone https://github.com/zsh-users/zsh-history-substring-search.git $BASE/.zsh/history-substring-search 1&>/dev/null || (cd $BASE/.zsh/history-substring-search && git pull origin master)
 
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $BASE/.zsh/syntax-highlighting 1&>/dev/null || (cd $BASE/.zsh/syntax-highlighting && git pull origin master)
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $BASE/.zsh/syntax-highlighting 1&>/dev/null || (cd $BASE/.zsh/syntax-highlighting && git pull origin master)
 
 for x in $manifest
 do
