@@ -354,19 +354,3 @@ unfunction zkbd_file; unset keyfile ret
 
 alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
 
-autoload -Uz vcs_info && vcs_info
-zstyle ':vcs_info:*' disable bzr cdv darcs mtn svk tla
-
-RED=$'%{\e[31m%}'
-GR=$'%{\e[32m%}'
-MA=$'%{\e[35m%}'
-YE=$'%{\e[33m%}'
-NC=$'%{\e[0m%}'
-zstyle ':vcs_info:*' actionformats \
-	"${MA}(${NC}%s${MA})${YE}-${MA}[${GR}%b${YE}|${RED}%a${MA}]${NC} "
-zstyle ':vcs_info:*' formats       \
- "${MA}(${NC}%s${MA})${Y}-${MA}[${GR}%b${MA}]${NC}%} "
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat "%b${RED}:${YE}%r"
-precmd () { vcs_info }
-
-#PS1="${MA}[${GR}%n${MA}] ${YE}%3~ "'${VCS_INFO_message_0_}'"${NC}%# "
