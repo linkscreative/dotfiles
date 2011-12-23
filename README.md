@@ -12,4 +12,4 @@ For instance, the tmux hotkey may be different due to preference or nesting, so 
 
 Screenshot, with my Dogs colour theme:
 
-![Screenshot with Dogs colour theme](http://files.0xf.nl/screenshots/screenshot-2011-12-23.15:36:24.png)
+![Screenshot with Dogs colour theme](http://files.0xf.nl/screenshots/screenshot-2011-12-23.15:39:14.png)
