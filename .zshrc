@@ -83,7 +83,7 @@ alias "tree=tree -A -I 'CVS|*~'"
 
 
 alias 'tm=tmux att -t0'
-
+alias 'packer=packer --noedit'
 # For convenience
 alias 'mkdir=mkdir -p'
 alias 'dus=du -ms * | sort -n'
@@ -353,4 +353,5 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[CtrlRight]}"   ]]  && bindkey  "${key[CtrlRight]}"   forward-word
 
 alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
+alias 'git-sync=git pull origin master && git push origin master'
 
