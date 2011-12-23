@@ -1,0 +1,6 @@
+#!/bin/zsh
+source screenshot
+
+scp $filepath tealc:/files/screenshots
+
+firefox "http://files.0xf.nl/screenshots/$filename"

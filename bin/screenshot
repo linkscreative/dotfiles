@@ -1,0 +1,4 @@
+#!/bin/zsh
+filename=screenshot-$(date +%Y-%m-%d.%H:%M:%S).png
+filepath=~/Desktop/$filename
+scrot -q 1 $filepath

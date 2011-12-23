@@ -11,6 +11,7 @@ manifest=(
     .vimrc
     .ncmpcpp/config
     .zsh
+    bin
 )
 
 relink () {
