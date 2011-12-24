@@ -329,9 +329,7 @@ function zkbd_file() {
 keyfile=$(zkbd_file)
 ret=$?
 if [[ ${ret} -ne 0 ]]; then
-    zkbd
-    keyfile=$(zkbd_file)
-    ret=$?
+    printf 'You do not have a zkbd profile for this terminal type. Type zkbd to set one up.\n'
 fi
 if [[ ${ret} -eq 0 ]] ; then
     source "${keyfile}"
