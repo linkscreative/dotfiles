@@ -48,3 +48,5 @@ nnoremap j gj
 nnoremap k gk
 nnoremap ; :
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+command! W w !sudo tee % > /dev/null
