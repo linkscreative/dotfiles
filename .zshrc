@@ -311,8 +311,7 @@ fi
 
 [[ -f $HOME/.zshenv ]] && source $HOME/.zshenv
 [[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
-[[ -f $HOME/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $HOME/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -f $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh ]] && source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
+source $HOME/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -f $HOME/.zsh/git/functions/zgitinit ]] && source $HOME/.zsh/git/functions/zgitinit
 
 export PATH=/var/lib/gems/1.8/bin:$PATH
@@ -353,3 +352,5 @@ unfunction zkbd_file; unset keyfile ret
 alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
 alias 'git-sync=git pull origin master && git push origin master'
 
+
+source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
