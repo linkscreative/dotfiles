@@ -3,4 +3,5 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.su
 export PATH=~/bin:$PATH
 export KC=$(which keychain)
 
+[[ -n "$DISPLAY" ]] && export BROWSER=chromium
 [[ -x $KC ]] && eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa --noask) && alias 'u=eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)'
