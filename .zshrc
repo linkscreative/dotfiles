@@ -354,3 +354,5 @@ alias 'git-sync=git pull origin master && git push origin master'
 
 
 source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
+
+[[ -x /usr/bin/archey]] && /usr/bin/archey
