@@ -353,6 +353,13 @@ alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
 alias 'git-sync=git pull origin master && git push origin master'
 
 
+activate () {
+    deactivate
+    cd ~/dev/$1/$2
+    source bin/activate
+    cd $2
+}
+
 source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
 
 [[ -x /usr/bin/archey ]] && /usr/bin/archey
