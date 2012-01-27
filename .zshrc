@@ -354,7 +354,7 @@ alias 'git-sync=git pull origin master && git push origin master'
 
 
 activate () {
-    deactivate
+    [[ -x deactivate ]] && deactivate
     cd ~/dev/$1/$2
     source bin/activate
     cd $2
