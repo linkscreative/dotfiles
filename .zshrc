@@ -362,4 +362,4 @@ activate () {
 
 source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
 
-[[ -x /usr/bin/archey ]] && /usr/bin/archey
+#[[ -x /usr/bin/archey ]] && /usr/bin/archey
