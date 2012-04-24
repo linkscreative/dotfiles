@@ -11,6 +11,15 @@ set modelines=0
 Bundle 'gmarik/vundle'
 Bundle 'python.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'scrooloose/nerdtree'
+Bundle 'alfredodeza/pytest.vim'
+Bundle 'pep8'
+Bundle 'tpope/vim-surround'
+Bundle 'wincent/Command-T'
+Bundle 'pyflakes.vim'
+
 "let g:Powerline_symbols = 'fancy'
 
 set number
