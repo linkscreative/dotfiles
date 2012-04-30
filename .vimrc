@@ -12,16 +12,35 @@ Bundle 'gmarik/vundle'
 Bundle 'python.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'L9'
-Bundle 'FuzzyFinder'
 Bundle 'scrooloose/nerdtree'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'pep8'
 Bundle 'tpope/vim-surround'
-Bundle 'wincent/Command-T'
 Bundle 'pyflakes.vim'
+Bundle 'kien/ctrlp.vim'
+" tab navigation like firefox
+:nmap <C-PageDown> :tabn<CR>
+:nmap <C-PageUp> :tabp<CR>
+:nmap <C-t> :tabnew<CR>
+:imap <C-t> <Esc>:tabnew<CR>
 
-"let g:Powerline_symbols = 'fancy'
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc
+"------------------------------------------------------------
+" CtrlP
+"------------------------------------------------------------
+" Set the max files
+let g:ctrlp_max_files = 10000
+
+" Optimize file searching
+if has("unix")
+    let g:ctrlp_user_command = {
+                \   'types': {
+                \       1: ['.git/', 'cd %s && git ls-files']
+                \   },
+                \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+                \ }
+endif
 set number
 set rnu
 filetype plugin indent on
@@ -33,6 +52,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+set showtabline=2
 set encoding=utf-8
 set scrolloff=3
 set showmode
@@ -68,3 +88,8 @@ nnoremap ; :
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 command! W w !sudo tee % > /dev/null
+
+exe "set <Insert>=\<Esc>[2;*~"
+exe "set <Del>=\<Esc>[3;*~"
+exe "set <PageUp>=\<Esc>[5;*~"
+exe "set <PageDown>=\<Esc>[6;*~"
