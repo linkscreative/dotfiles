@@ -362,4 +362,42 @@ activate () {
 
 source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
 
+# Systemd stuff
+if [[ ! -e /sys/fs/cgroup/systemd ]]; then  # not using systemd
+  start() {
+    sudo rc.d start $1
+  }
+
+  restart() {
+    sudo rc.d restart $1
+  }
+
+  stop() {
+    sudo rc.d stop $1
+  }
+else
+  start() {
+    sudo systemctl start $1.service
+  }
+
+  restart() {
+    sudo systemctl restart $1.service
+  }
+
+  stop() {
+    sudo systemctl stop $1.service
+  }
+
+  enable() {
+    sudo systemctl enable $1.service
+  }
+
+  status() {
+    sudo systemctl status $1.service
+  }
+
+  disable() {
+    sudo systemctl disable $1.service
+  }
+fi
 #[[ -x /usr/bin/archey ]] && /usr/bin/archey
