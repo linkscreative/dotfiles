@@ -401,3 +401,11 @@ else
   }
 fi
 #[[ -x /usr/bin/archey ]] && /usr/bin/archey
+#
+#Disable globbing for some things
+setopt glob
+alias aria2c='noglob aria2c'
+alias curl='noglob curl'
+alias wget='noglob wget'
+
+alias sudo='sudo '
