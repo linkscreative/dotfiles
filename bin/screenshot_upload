@@ -3,5 +3,5 @@ source screenshot
 
 scp $filepath tealc:/files/screenshots
 export URL="http://files.blackflags.co.uk/screenshots/$filename"
-xdg-open $URL
 echo $URL | xclip -selection c
+xdg-open $URL
