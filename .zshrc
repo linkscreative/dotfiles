@@ -409,3 +409,6 @@ alias curl='noglob curl'
 alias wget='noglob wget'
 
 alias sudo='sudo '
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
