@@ -12,5 +12,5 @@ Config { font = "-xos4-terminus-medium-r-*-*-12-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %wlan0% }{ <fc=#9B859D>%date%</fc> | %uname%"
+       , template = "%cpu% | %memory% * %swap% | %wlan0% }{ %uname% | <fc=#9B859D>%date%</fc> "
        }
