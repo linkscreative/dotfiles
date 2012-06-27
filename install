@@ -13,6 +13,7 @@ manifest=(
     .ncmpcpp/config
     .zsh
     .xmonad/xmonad.hs
+    .xmobarrc
     .Xdefaults
     bin
 )
