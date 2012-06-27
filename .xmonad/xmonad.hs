@@ -10,7 +10,8 @@ myLayout = avoidStruts(spacing 5 $ tiled ||| Mirror tiled) |||
     where
         tiled = Tall 1 (3/100) (1/2)
 
-myMenu = "dmenu_run -fn '-xos4-terminus-medium-r-*-*-12-*-*-*-*-*-*-*' -sb '#dd1144' -nb '#000000'"
+myMenu = "dmenu_run -fn '-xos4-terminus-medium-r-*-*-12-*-*-*-*-*-*-*'"
+    ++ " -sb '#dd1144' -nb '#000000'"
 
 myLockscreen = "slimlock"
 
