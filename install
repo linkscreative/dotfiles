@@ -8,10 +8,12 @@ manifest=(
     .tmux.conf
     .zshenv
     .zshrc
+    .xinitrc
     .vimrc
     .ncmpcpp/config
     .zsh
     .xmonad/xmonad.hs
+    .Xdefaults
     bin
 )
 
