@@ -2,13 +2,14 @@ import XMonad
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spacing
 import XMonad.Util.EZConfig
 
 myLayout = avoidStruts(spacing 5 $ tiled ||| Mirror tiled) |||
     noBorders (fullscreenFull Full)
     where
-        tiled = Tall 1 (3/100) (1/2)
+        tiled = ResizableTall 1 (3/100) (1/2) []
 
 myMenu = "dmenu_run -fn '-xos4-terminus-medium-r-*-*-12-*-*-*-*-*-*-*'"
     ++ " -sb '#dd1144' -nb '#000000'"
@@ -30,4 +31,6 @@ main = do
         [ ("M-<Space>", spawn myMenu)
         , ("M4-l", spawn myLockscreen)
         , ("M-C-<Space>", sendMessage NextLayout)
+        , ("M-z", sendMessage MirrorShrink)
+        , ("M-a", sendMessage MirrorExpand)
         ]
