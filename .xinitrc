@@ -4,6 +4,8 @@ xsetroot -cursor_name left_ptr
 setxkbmap -layout gb
 export BROWSER=google-chrome
 
+xrdb -merge ~/.Xresources
+
 [[ -x /usr/bin/nitrogen ]] && nitrogen --set-zoom-fill ~/.wallpaper &
 [[ -x /usr/bin/xmobar ]] && xmobar &
 [[ -x /usr/bin/start-pulseaudio-x11 ]] && start-pulseaudio-x11 &
