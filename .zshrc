@@ -1,3 +1,11 @@
+if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )); then
+  if [[ -x /usr/bin/vlock ]]; then
+    exec nohup startx > .xlog & vlock
+  else
+    exec startx
+  fi
+fi
+
 # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
 
