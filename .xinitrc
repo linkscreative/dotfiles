@@ -7,8 +7,9 @@ export BROWSER=google-chrome
 xrdb -merge ~/.Xresources
 
 [[ -x /usr/bin/nitrogen ]] && nitrogen --set-zoom-fill ~/.wallpaper &
-[[ -x /usr/bin/xmobar ]] && xmobar &
 [[ -x /usr/bin/start-pulseaudio-x11 ]] && start-pulseaudio-x11 &
+[[ -x /usr/bin/urxvtd ]] && urxvtd -o -f -q
+[[ -x /usr/bin/xmobar ]] && xmobar &
 [[ -x /opt/dropbox/dropboxd ]] && /opt/dropbox/dropboxd &
 xcompmgr -c &
 xmonad

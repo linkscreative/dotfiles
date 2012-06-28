@@ -18,7 +18,7 @@ myLockscreen = "slimlock"
 
 main = do
     xmonad $ defaultConfig
-        { terminal = "urxvt"
+        { terminal = "urxvtc"
         , normalBorderColor  = "#1a1a1a"
         , focusedBorderColor = "#dd1144"
         , workspaces = ["Angry","Bears","Chomp","Donks","Every","Friday"]

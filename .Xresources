@@ -46,4 +46,4 @@ URxvt.urlLauncher:      /usr/bin/google-chrome
 URxvt.matcher.button:   1
 URxvt.depth: 32
 urxvt*background: rgba:0000/0000/0000/cccc
-urxvt*termName: rxvt-unicode
+! urxvt*termName: rxvt-unicode
