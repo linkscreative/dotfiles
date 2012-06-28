@@ -9,8 +9,16 @@ Config { font = "-xos4-terminus-medium-r-*-*-12-*-*-*-*-*-*-*"
                     , Run Swap [] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %H:%M" "date" 10
+                    , Run BatteryP ["BAT0"] ["-l"
+                                            , "#DD1144"
+                                            , "-h"
+                                            , "#4DA869"
+                                            , "-t"
+                                            , "<leftbar>"
+                                            ] 20
+                    , Run Wireless "wlan0" ["-t", "<essid>"] 600
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %wlan0% }{ %uname% | <fc=#9B859D>%date%</fc> "
+       , template = "%cpu% | %memory% * %swap% | %wlan0% %wlan0wi%  }{ %uname% | %battery% | <fc=#9B859D>%date%</fc> "
        }
