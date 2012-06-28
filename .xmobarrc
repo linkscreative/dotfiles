@@ -1,4 +1,4 @@
-Config { font = "-xos4-terminus-medium-r-*-*-12-*-*-*-*-*-*-*"
+Config { font = "xft:Terminus:size=9:antialias=false"
        , bgColor = "black"
        , fgColor = "grey"
        , position = Top
