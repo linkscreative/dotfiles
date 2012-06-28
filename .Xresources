@@ -1,5 +1,5 @@
 urxvt*foreground: #ffffff
-urxvt*background: #000000
+! urxvt*background: #000000
 
 ! Normal
 ! color0    black
@@ -46,3 +46,4 @@ URxvt.urlLauncher:      /usr/bin/google-chrome
 URxvt.matcher.button:   1
 URxvt.depth: 32
 urxvt*background: rgba:0000/0000/0000/cccc
+urxvt*termName: rxvt-unicode
