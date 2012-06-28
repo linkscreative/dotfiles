@@ -8,6 +8,6 @@ export BROWSER=google-chrome
 [[ -x /usr/bin/xmobar ]] && xmobar &
 [[ -x /usr/bin/start-pulseaudio-x11 ]] && start-pulseaudio-x11 &
 [[ -x /opt/dropbox/dropboxd ]] && /opt/dropbox/dropboxd &
-
+xcompmgr -c &
 xmonad
 

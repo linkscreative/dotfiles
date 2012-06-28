@@ -20,7 +20,6 @@ urxvt*color12:    #7587A6
 urxvt*color13:    #F0C47B
 urxvt*color14:    #FF4040
 urxvt*color15:    #EEEEEC
-urxvt*scrollbar: false 
 urxvt*color0:    #2E3436
 urxvt*color1:    #DD1144
 urxvt*color2:    #9B859D
@@ -40,5 +39,10 @@ urxvt*color7:    #C2C2C2
 ! color14    cyan
 ! color15    white
 
-urxvt*font: xft:Terminus:pixelsize=9:antialias=false:hinting=false
-URxvt.perl-ext-common: default
+URxvt.font: xft:Terminus:pixelsize=9:antialias=false:hinting=false
+URxvt.perl-ext-common: default,matcher,clipboard
+URxvt.scrollBar: false
+URxvt.urlLauncher:      /usr/bin/google-chrome
+URxvt.matcher.button:   1
+URxvt.depth: 32
+urxvt*background: rgba:0000/0000/0000/cccc
