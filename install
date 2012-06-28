@@ -14,7 +14,7 @@ manifest=(
     .zsh
     .xmonad/xmonad.hs
     .xmobarrc
-    .Xdefaults
+    .Xresources
     bin
 )
 
