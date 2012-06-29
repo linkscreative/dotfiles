@@ -2,7 +2,7 @@ if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$(termi
   if [[ -x /usr/bin/vlock ]]; then
     exec nohup startx > .xlog & vlock
   else
-    exec startx
+    [[ -x /usr/bin/startx ]] && exec startx
   fi
 fi
 
