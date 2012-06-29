@@ -420,3 +420,4 @@ alias sudo='sudo '
 
 export WORKON_HOME=~/.virtualenvs
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
+alias mkvirtualenv='mkvirtualenv -p python2.7'
