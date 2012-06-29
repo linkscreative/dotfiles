@@ -1,4 +1,4 @@
-if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )); then
+if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$(terminal)" = "/dev/tty1" ]; then
   if [[ -x /usr/bin/vlock ]]; then
     exec nohup startx > .xlog & vlock
   else
