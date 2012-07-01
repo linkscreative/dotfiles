@@ -270,52 +270,6 @@ autoload zcalc
 # Line editor
 autoload zed
 
-# Renaming with globbing
-autoload zmv
-
-# Various reminders of things I forget...
-# (Mostly useful features that I forget to use)
-# vared
-# =ls turns to /bin/ls
-# =(ls) turns to filename (which contains output of ls)
-# <(ls) turns to named pipe
-# ^X* expand word
-# ^[^_ copy prev word
-# ^[A accept and hold
-# echo $name:r not-extension
-# echo $name:e extension
-# echo $xx:l lowercase
-# echo $name:s/foo/bar/
-
-# Quote current line: M-'
-# Quote region: M-"
-
-# Up-case-word: M-u
-# Down-case-word: M-l
-# Capitilise word: M-c
-
-# kill-region
-
-# expand word: ^X*
-# accept-and-hold: M-a
-# accept-line-and-down-history: ^O
-# execute-named-cmd: M-x
-# push-line: ^Q
-# run-help: M-h
-# spelling correction: M-s
-
-# echo ${^~path}/*mous*
-
-# Add host/domain specific zshrc
-if [ -f $HOME/.zshrc-$HOST ]
-then
-    . $HOME/.zshrc-$HOST
-fi
-
-if [ -f $HOME/.zshrc-$(hostname -d) ]
-then
-    . $HOME/.zshrc-$(hostname -d)
-fi
 
 [[ -f $HOME/.zshenv ]] && source $HOME/.zshenv
 [[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
@@ -359,14 +313,6 @@ unfunction zkbd_file; unset keyfile ret
 
 alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
 alias 'git-sync=git pull origin master && git push origin master'
-
-
-activate () {
-    [[ -x deactivate ]] && deactivate
-    cd ~/dev/$1/$2
-    source bin/activate
-    cd $2
-}
 
 source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
 
