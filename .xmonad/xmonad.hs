@@ -41,5 +41,5 @@ main = do
         , ("<XF86AudioPlay>", spawn musicToggle)
         , ("<XF86AudioNext>", spawn musicNext)
         , ("<XF86AudioPrev>", spawn musicPrev)
-        , ("<XF86AudioPStop>", spawn musicStop)
+        , ("<XF86AudioStop>", spawn musicStop)
         ]
