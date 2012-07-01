@@ -16,6 +16,11 @@ myMenu = "dmenu_run -fn 'terminus-9'"
 
 myLockscreen = "slimlock"
 
+musicToggle = "mpc toggle"
+musicNext = "mpc next"
+musicPrev = "mpc prev"
+musicStop = "mpc stop"
+
 main = do
     xmonad $ defaultConfig
         { terminal = "urxvtc"
@@ -33,4 +38,8 @@ main = do
         , ("M-C-<Space>", sendMessage NextLayout)
         , ("M-z", sendMessage MirrorShrink)
         , ("M-a", sendMessage MirrorExpand)
+        , ("<XF86AudioPlay>", spawn musicToggle)
+        , ("<XF86AudioNext>", spawn musicNext)
+        , ("<XF86AudioPrev>", spawn musicPrev)
+        , ("<XF86AudioPStop>", spawn musicStop)
         ]
