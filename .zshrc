@@ -1,3 +1,4 @@
+START=$(date +%s%N | cut -b1-13)
 if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$TTY" = "/dev/tty1" ]; then
   if [[ -x /usr/bin/vlock ]]; then
     exec nohup startx > .xlog & vlock
@@ -6,22 +7,11 @@ if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$TTY" =
   fi
 fi
 
-# Skip all this for non-interactive shells
+# # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
 
 
-PS1=$'%{\e[0;32m%}%T %f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
-# Set less options
-if [[ -x $(which less) ]]
-then
-    export PAGER="less"
-    export LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
-    if [[ -x $(which lesspipe.sh) ]]
-    then
-	LESSOPEN="| lesspipe.sh %s"
-	export LESSOPEN
-    fi
-fi
+PS1=$'%f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
 
 export EDITOR="vim"
 export USE_EDITOR=$EDITOR
@@ -62,14 +52,6 @@ setopt NO_BG_NICE
 watch=notme
 export LOGCHECK=60
 
-# Enable color support of ls
-if [[ "$TERM" != "dumb" ]]; then
-    if [[ -x `which dircolors` ]]; then
-	eval `dircolors -b`
-	alias 'ls=ls --color=auto'
-    fi
-fi
-
 # Short command aliases
 alias 'ls=ls --group-directories-first --color'
 alias 'l=ls -dF'
@@ -96,26 +78,6 @@ alias 'packer=packer --noedit'
 alias 'mkdir=mkdir -p'
 alias 'dus=du -ms * | sort -n'
 
-# Typing errors...
-alias 'cd..=cd ..'
-
-# Running 'b.ps' runs 'q b.ps'
-alias -s ps=q
-alias -s html=q
-
-# PDF viewer (just type 'file.pdf')
-if [[ -x `which kpdf` ]]; then
-    alias -s 'pdf=kfmclient exec'
-else
-    if [[ -x `which gpdf` ]]; then
-	alias -s 'pdf=gpdf'
-    else
-	if [[ -x `which evince` ]]; then
-	    alias -s 'pdf=evince'
-	fi
-    fi
-fi
-
 # Global aliases (expand whatever their position)
 #  e.g. find . E L
 alias -g L='| less'
@@ -126,54 +88,6 @@ alias -g N='> /dev/null'
 alias -g E='2> /dev/null'
 alias -g SPRUNGE='| curl -F "sprunge=<-" http://sprunge.us'
 
-# Automatically background processes (no output to terminal etc)
-alias 'z=echo $RANDOM > /dev/null; zz'
-zz () {
-    echo $*
-    $* &> "/tmp/z-$1-$RANDOM" &!
-}
-
-# Quick find
-f() {
-    echo "find . -iname \"*$1*\""
-    find . -iname "*$1*"
-}
-
-# When directory is changed set xterm title to host:dir
-chpwd() {
-    [[ -t 1 ]] || return
-    case $TERM in
-	sun-cmd) print -Pn "\e]l%~\e\\";;
-        *xterm*|rxvt|(dt|k|E)term) print -Pn "\e]2;%m:%~\a";;
-    esac
-}
-
-# For changing the umask automatically
-chpwd () {
-    case $PWD in
-        $HOME/[Dd]ocuments*)
-            if [[ $(umask) -ne 077 ]]; then
-                umask 0077
-                echo -e "\033[01;32mumask: private \033[m"
-            fi;;
-        */[Ww]eb*)
-            if [[ $(umask) -ne 072 ]]; then
-                umask 0072
-                echo -e "\033[01;33mumask: other readable \033[m"
-            fi;;
-        /vol/nothing)
-            if [[ $(umask) -ne 002 ]]; then
-                umask 0002
-                echo -e "\033[01;35mumask: group writable \033[m"
-            fi;;
-        *)
-            if [[ $(umask) -ne 022 ]]; then
-                umask 0022
-                echo -e "\033[01;31mumask: world readable \033[m"
-            fi;;
-    esac
-}
-cd . &> /dev/null
 
 # MySQL prompt
 export MYSQL_PS1="\R:\m:\s \h> "
@@ -222,10 +136,6 @@ zstyle ':completion:*' local matt.blissett.me.uk /web/matt.blissett.me.uk
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 
-bindkey -v
-bindkey '\e[3~' delete-char
-bindkey '^R' history-incremental-search-backward
-
 # Quick ../../..
 rationalise-dot() {
     if [[ $LBUFFER = *.. ]]; then
@@ -260,24 +170,8 @@ autoload insert-files
 zle -N insert-files
 bindkey '^Xf' insert-files
 
-
-# xargs but zargs
-autoload -U zargs
-
-# Calculator
-autoload zcalc
-
-# Line editor
-autoload zed
-
-
-[[ -f $HOME/.zshenv ]] && source $HOME/.zshenv
-[[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
+# [[ -f $HOME/.zshlocal ]] && source $HOME/.zshlocal
 source $HOME/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -f $HOME/.zsh/git/functions/zgitinit ]] && source $HOME/.zsh/git/functions/zgitinit
-
-export PATH=/var/lib/gems/1.8/bin:$PATH
-export PATH=/opt/android-sdk/platform-tools:$PATH
 
 autoload zkbd
 function zkbd_file() {
@@ -311,10 +205,7 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[CtrlLeft]}"    ]]  && bindkey  "${key[CtrlLeft]}"    backward-word
 [[ -n "${key[CtrlRight]}"   ]]  && bindkey  "${key[CtrlRight]}"   forward-word
 
-alias 'sd=svn diff --diff-cmd /usr/bin/svn-diff-meld'
 alias 'git-sync=git pull origin master && git push origin master'
-
-source $HOME/.zsh/history-substring-search/zsh-history-substring-search.zsh
 
 # Systemd stuff
 if [[ ! -e /sys/fs/cgroup/systemd ]]; then  # not using systemd
@@ -354,9 +245,7 @@ else
     sudo systemctl disable $1.service
   }
 fi
-#[[ -x /usr/bin/archey ]] && /usr/bin/archey
-#
-#Disable globbing for some things
+
 setopt glob
 alias aria2c='noglob aria2c'
 alias curl='noglob curl'
@@ -364,6 +253,11 @@ alias wget='noglob wget'
 
 alias sudo='sudo '
 
-export WORKON_HOME=~/.virtualenvs
-[[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
-alias mkvirtualenv='mkvirtualenv -p python2.7'
+# export WORKON_HOME=~/.virtualenvs
+# [[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
+# alias mkvirtualenv='mkvirtualenv -p python2.7'
+
+alias 'u=eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)'
+
+echo "END: $(expr $(date +%s%N | cut -b1-13) - $START)"
+
