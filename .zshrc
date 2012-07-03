@@ -155,6 +155,10 @@ autoload copy-earlier-word
 zle -N copy-earlier-word
 bindkey '^[,' copy-earlier-word
 
+# Ctrl-R find
+bindkey -v
+bindkey '\e[3~' delete-char
+bindkey '^R' history-incremental-search-backward
 # Cycle between positions for ambigous completions
 autoload cycle-completion-positions
 zle -N cycle-completion-positions
