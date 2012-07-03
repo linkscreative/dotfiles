@@ -259,5 +259,5 @@ alias sudo='sudo '
 
 alias 'u=eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)'
 
-echo "END: $(expr $(date +%s%N | cut -b1-13) - $START)"
+#echo "END: $(expr $(date +%s%N | cut -b1-13) - $START)"
 
