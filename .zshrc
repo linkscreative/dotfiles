@@ -257,11 +257,11 @@ alias wget='noglob wget'
 
 alias sudo='sudo '
 
-# export WORKON_HOME=~/.virtualenvs
-# [[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
-# alias mkvirtualenv='mkvirtualenv -p python2.7'
+export WORKON_HOME=~/.virtualenvs
+[[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
+alias mkvirtualenv='mkvirtualenv -p python2.7'
 
 alias 'u=eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)'
 
 #echo "END: $(expr $(date +%s%N | cut -b1-13) - $START)"
-
+PATH=/opt/java/bin:$PATH

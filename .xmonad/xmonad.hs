@@ -20,6 +20,8 @@ musicToggle = "mpc toggle"
 musicNext = "mpc next"
 musicPrev = "mpc prev"
 musicStop = "mpc stop"
+musicUp = "mpc volume +10"
+musicDown = "mpc volume -10"
 
 main = do
     xmonad $ defaultConfig
@@ -42,4 +44,6 @@ main = do
         , ("<XF86AudioNext>", spawn musicNext)
         , ("<XF86AudioPrev>", spawn musicPrev)
         , ("<XF86AudioStop>", spawn musicStop)
+        , ("M-C-<Up>", spawn musicUp)
+        , ("M-C-<Down>", spawn musicDown)
         ]
