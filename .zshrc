@@ -262,7 +262,7 @@ export WORKON_HOME=~/.virtualenvs
 alias mkvirtualenv='mkvirtualenv -p python2.7'
 
 unlock() {
-    eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)
+    [[ -x $(which keychain) ]] && eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)
 }
 alias 'u=unlock'
 unlock
