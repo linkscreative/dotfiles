@@ -269,3 +269,6 @@ unlock
 
 #echo "END: $(expr $(date +%s%N | cut -b1-13) - $START)"
 PATH=/opt/java/bin:$PATH
+
+alias fact="elinks -dump randomfunfacts.com | sed -n '/^[┌│└]/p'"
+alias glr='fact && git pull --rebase'
