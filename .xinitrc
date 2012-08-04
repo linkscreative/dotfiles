@@ -11,6 +11,6 @@ xrdb -merge ~/.Xresources
 [[ -x /usr/bin/urxvtd ]] && urxvtd -o -f -q
 [[ -x /usr/bin/xmobar ]] && xmobar &
 [[ -x /opt/dropbox/dropboxd ]] && /opt/dropbox/dropboxd &
-compton -c -C -r 10 -l -15 -t -15 -o .5 &
+xcompmgr -c -C -r 10 -l -15 -t -15 -o .5 &
 xmonad
 
