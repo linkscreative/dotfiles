@@ -39,7 +39,8 @@ urxvt*color7:    #C2C2C2
 ! color14    cyan
 ! color15    white
 
-URxvt.font: xft:Terminus:pixelsize=9:antialias=false:hinting=false
+
+URxvt.font: -*-terminus-*-*-*-*-12-*-*-*-*-*-iso10646-*
 URxvt.perl-ext-common: default,matcher,clipboard
 URxvt.scrollBar: false
 URxvt.urlLauncher:      /usr/bin/google-chrome
