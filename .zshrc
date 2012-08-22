@@ -1,11 +1,11 @@
 START=$(date +%s%N | cut -b1-13)
-if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$TTY" = "/dev/tty1" ]; then
-  if [[ -x /usr/bin/vlock ]]; then
-    exec nohup startx > .xlog & vlock
-  else
-    [[ -x /usr/bin/startx ]] && exec startx
-  fi
-fi
+#if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$TTY" = "/dev/tty1" ]; then
+#  if [[ -x /usr/bin/vlock ]]; then
+#    exec nohup startx > .xlog & vlock
+#  else
+#    [[ -x /usr/bin/startx ]] && exec startx
+#  fi
+#fi
 
 # # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
