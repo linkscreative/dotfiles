@@ -12,6 +12,8 @@ manifest=(
     .vimrc
     .ncmpcpp/config
     .zsh
+    .i3status.conf
+    .i3/config
     .xmonad/xmonad.hs
     .xmobarrc
     .Xresources
