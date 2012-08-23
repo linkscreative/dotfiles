@@ -179,8 +179,7 @@ source $HOME/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload zkbd
 function zkbd_file() {
-    [[ -f ~/.zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && printf '%s' ~/".zkbd/${TERM}-${VENDOR}-${OSTYPE}" && return 0
-    [[ -f ~/.zkbd/${TERM}-${DISPLAY}          ]] && printf '%s' ~/".zkbd/${TERM}-${DISPLAY}"          && return 0
+    [[ -f ~/.zkbd/${TERM} ]] && printf '%s' ~/".zkbd/${TERM}" && return 0
     return 1
 }
 
