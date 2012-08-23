@@ -208,8 +208,6 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[CtrlLeft]}"    ]]  && bindkey  "${key[CtrlLeft]}"    backward-word
 [[ -n "${key[CtrlRight]}"   ]]  && bindkey  "${key[CtrlRight]}"   forward-word
 
-alias 'git-sync=git pull origin master && git push origin master'
-
 # Systemd stuff
 if [[ ! -e /sys/fs/cgroup/systemd ]]; then  # not using systemd
   start() {
