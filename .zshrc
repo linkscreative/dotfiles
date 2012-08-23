@@ -235,45 +235,41 @@ if [[ -x $(which systemctl) ]]; then  # not using systemd
   disable() {
     sudo systemctl disable $1.service
   }
+elif [[ -x $(which initctl) ]]; then
+  start() {
+    sudo initctl start $1
+  }
+  stop() {
+    sudo initctl stop $1
+  }
+  restart() {
+    sudo initctl restart $1
+  }
+  status() {
+    sudo initctl status $1
+  }
+elif [[ "$DISTRIB_ID" = "archlinux" ]]; then
+  start() {
+    sudo rc.d start $1
+  }
+
+  restart() {
+    sudo rc.d restart $1
+  }
+
+  stop() {
+    sudo rc.d stop $1
+  }
 else
-  if [[ -x $(which initctl) ]]; then
-    start() {
-      sudo initctl start $1
-    }
-    stop() {
-      sudo initctl stop $1
-    }
-    restart() {
-      sudo initctl restart $1
-    }
-    status() {
-      sudo initctl status $1
-    }
-  else
-    if [[ "$DISTRIB_ID" = "archlinux" ]]; then
-     start() {
-       sudo rc.d start $1
-     }
-
-     restart() {
-       sudo rc.d restart $1
-     }
-
-     stop() {
-       sudo rc.d stop $1
-     }
-    else
-      start() {
-        sudo service $1 start
-      }
-      stop() {
-        sudo service $1 stop
-      }
-      restart() {
-        sudo service $1 restart
-      }
-    fi
-  fi
+  start() {
+    sudo service $1 start
+  }
+  stop() {
+    sudo service $1 stop
+  }
+  restart() {
+    sudo service $1 restart
+  }
 fi
 
 setopt glob
