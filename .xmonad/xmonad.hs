@@ -11,8 +11,7 @@ myLayout = avoidStruts(spacing 5 $ tiled ||| Mirror tiled) |||
     where
         tiled = ResizableTall 1 (3/100) (1/2) []
 
-myMenu = "dmenu_run -fn 'terminus-9'"
-    ++ " -sb '#dd1144' -nb '#000000'"
+myMenu = "dmenu_run"
 
 myLockscreen = "slimlock"
 
