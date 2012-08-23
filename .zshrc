@@ -208,20 +208,10 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[CtrlLeft]}"    ]]  && bindkey  "${key[CtrlLeft]}"    backward-word
 [[ -n "${key[CtrlRight]}"   ]]  && bindkey  "${key[CtrlRight]}"   forward-word
 
-# Systemd stuff
-if [[ ! -e /sys/fs/cgroup/systemd ]]; then  # not using systemd
-  start() {
-    sudo rc.d start $1
-  }
+[[ -f /etc/lsb-release ]] && source /etc/lsb-release
 
-  restart() {
-    sudo rc.d restart $1
-  }
-
-  stop() {
-    sudo rc.d stop $1
-  }
-else
+# Service stuff
+if [[ -x $(which systemctl) ]]; then  # not using systemd
   start() {
     sudo systemctl start $1.service
   }
@@ -245,6 +235,45 @@ else
   disable() {
     sudo systemctl disable $1.service
   }
+else
+  if [[ -x $(which initctl) ]]; then
+    start() {
+      sudo initctl start $1
+    }
+    stop() {
+      sudo initctl stop $1
+    }
+    restart() {
+      sudo initctl restart $1
+    }
+    status() {
+      sudo initctl status $1
+    }
+  else
+    if [[ "$DISTRIB_ID" = "archlinux" ]]; then
+     start() {
+       sudo rc.d start $1
+     }
+
+     restart() {
+       sudo rc.d restart $1
+     }
+
+     stop() {
+       sudo rc.d stop $1
+     }
+    else
+      start() {
+        sudo service $1 start
+      }
+      stop() {
+        sudo service $1 stop
+      }
+      restart() {
+        sudo service $1 restart
+      }
+    fi
+  fi
 fi
 
 setopt glob
