@@ -14,9 +14,14 @@ START=$(date +%s%N | cut -b1-13)
 PS1=$'%f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
 
 case $TERM in
-    rxvt*)
-        precmd () {print -Pn "\e]0;%n@%m: %~\a"}
-        ;;
+sun-cmd)
+    precmd () { print -Pn "\e]l%~\e\\" }
+    preexec () { print -Pn "\e]l%~\e\\" }
+  ;;
+    *xterm*|*rxvt*|(dt|k|E)term)
+    precmd () { print -Pn "\e]2;%n@%m:%~\a" }
+    preexec () { print -Pn "\e]2;%n@%m:%~\a" }
+  ;;
 esac
 
 export EDITOR="vim"
