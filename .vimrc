@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 set modelines=0
+set title
 
 Bundle 'gmarik/vundle'
 Bundle 'python.vim'
