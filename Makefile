@@ -1,4 +1,4 @@
-upgrade: pull submodules linkfiles source
+upgrade: pull submodules linkfiles
 
 pull:
 	git pull origin master
@@ -9,6 +9,3 @@ linkfiles:
 submodules:
 	git submodule init; git submodule update
 	git submodule foreach git pull origin master;
-
-source:
-	source ~/.zshrc
