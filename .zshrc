@@ -15,6 +15,8 @@ sun-cmd)
   ;;
 esac
 
+[[ -d ~/.zsh/completion ]] && fpath=(~/.zsh/completion $fpath)
+
 export EDITOR="vim"
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
