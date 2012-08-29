@@ -290,8 +290,10 @@ export WORKON_HOME=~/.virtualenvs
 typeset -g -A VENV_DEFAULTS
 VENV_DEFAULTS[mkvirtualenv]='-p python2.7'
 VENV_CMD=(workon mkvirtualenv rmvirtualenv)
+VENV_PATH=/usr/bin/virtualenvwrapper.sh
+
 loadvirtualenvwrapper() {
-    source /usr/bin/virtualenvwrapper.sh
+    [[ -f "$VENV_PATH" ]] && source /usr/bin/virtualenvwrapper.sh || return 1
     for c in $VENV_CMD
     do
         unalias $c
