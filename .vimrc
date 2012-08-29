@@ -19,6 +19,8 @@ Bundle 'pep8'
 Bundle 'tpope/vim-surround'
 Bundle 'pyflakes.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-powerline'
+
 " tab navigation like firefox
 :nmap <C-PageDown> :tabn<CR>
 :nmap <C-PageUp> :tabp<CR>
