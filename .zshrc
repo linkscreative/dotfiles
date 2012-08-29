@@ -134,8 +134,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 zstyle ':completion:*:*:rmdir:*' file-sort time
 
-zstyle ':completion:*' local matt.blissett.me.uk /web/matt.blissett.me.uk
-
 # CD to never select parent directory
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
