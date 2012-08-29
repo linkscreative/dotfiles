@@ -284,9 +284,9 @@ alias sudo='sudo '
     alias less='most' && \
     alias more='most'
 
-export WORKON_HOME=~/.virtualenvs
 
 # Wicked lazy virtualenvwrapper code.
+export WORKON_HOME=~/.virtualenvs
 typeset -g -A VENV_DEFAULTS
 VENV_DEFAULTS[mkvirtualenv]='-p python2.7'
 VENV_CMD=(workon mkvirtualenv rmvirtualenv)
