@@ -1,15 +1,6 @@
 START=$(date +%s%N | cut -b1-13)
-#if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$TTY" = "/dev/tty1" ]; then
-#  if [[ -x /usr/bin/vlock ]]; then
-#    exec nohup startx > .xlog & vlock
-#  else
-#    [[ -x /usr/bin/startx ]] && exec startx
-#  fi
-#fi
 
-# # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
-
 
 PS1=$'%f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
 
@@ -294,8 +285,20 @@ alias sudo='sudo '
     alias more='most'
 
 export WORKON_HOME=~/.virtualenvs
-[[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
-alias mkvirtualenv='mkvirtualenv -p python2.7'
+
+# Wicked lazy virtualenvwrapper code.
+typeset -g -A VENV_DEFAULTS
+VENV_DEFAULTS[mkvirtualenv]='-p python2.7'
+VENV_CMD=(workon mkvirtualenv rmvirtualenv)
+loadvirtualenvwrapper() {
+    source /usr/bin/virtualenvwrapper.sh
+    for c in $VENV_CMD
+    do
+        unalias $c
+        alias $c="$c $VENV_DEFAULTS[$c]"
+    done
+}
+for c in $VENV_CMD; alias "$c=loadvirtualenvwrapper; $c $VENV_DEFAULTS[$c]"
 
 unlock() {
     [[ -x $(which keychain) ]] && eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)
