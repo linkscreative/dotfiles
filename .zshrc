@@ -289,6 +289,9 @@ alias curl='noglob curl'
 alias wget='noglob wget'
 
 alias sudo='sudo '
+[[ -x $(which most) ]] && \
+    alias less='most' && \
+    alias more='most'
 
 export WORKON_HOME=~/.virtualenvs
 [[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
