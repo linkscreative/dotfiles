@@ -289,7 +289,7 @@ alias sudo='sudo '
 export WORKON_HOME=~/.virtualenvs
 typeset -g -A VENV_DEFAULTS
 VENV_DEFAULTS[mkvirtualenv]='-p python2.7'
-VENV_CMD=(workon mkvirtualenv rmvirtualenv)
+VENV_CMD=(workon mkvirtualenv rmvirtualenv showvirtualenv)
 VENV_PATH=/usr/bin/virtualenvwrapper.sh
 
 loadvirtualenvwrapper() {
