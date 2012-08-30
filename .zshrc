@@ -1,15 +1,6 @@
 START=$(date +%s%N | cut -b1-13)
-#if [[ -z $DISPLAY ]] && ! [[ -e /tmp/.X11-unix/X0 ]] && (( EUID )) && [ "$TTY" = "/dev/tty1" ]; then
-#  if [[ -x /usr/bin/vlock ]]; then
-#    exec nohup startx > .xlog & vlock
-#  else
-#    [[ -x /usr/bin/startx ]] && exec startx
-#  fi
-#fi
 
-# # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
-
 
 PS1=$'%f%n%{\e[1;35m%}@%{\e[0;31m%}%m%{\e[1;37m%}:%{\e[1;32m%}%~ %{\e[1;30m%}%# %{\e[00m%}'
 
@@ -23,6 +14,8 @@ sun-cmd)
     preexec () { print -Pn "\e]2;%n@%m:%~\a" }
   ;;
 esac
+
+[[ -d ~/.zsh/completion ]] && fpath=(~/.zsh/completion $fpath)
 
 export EDITOR="vim"
 export USE_EDITOR=$EDITOR
@@ -141,8 +134,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 zstyle ':completion:*:*:rmdir:*' file-sort time
 
-zstyle ':completion:*' local matt.blissett.me.uk /web/matt.blissett.me.uk
-
 # CD to never select parent directory
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
@@ -222,7 +213,7 @@ unfunction zkbd_file; unset keyfile ret
 [[ -f /etc/lsb-release ]] && source /etc/lsb-release
 
 # Service stuff
-if [[ -x $(which systemctl) ]]; then  # not using systemd
+if [[ -x $(which systemctl) ]]; then  # using systemd
   start() {
     sudo systemctl start $1.service
   }
@@ -245,6 +236,14 @@ if [[ -x $(which systemctl) ]]; then  # not using systemd
 
   disable() {
     sudo systemctl disable $1.service
+  }
+  
+  poweroff() {
+    sudo systemctl poweroff
+  }
+
+  reboot() {
+    sudo systemctl reboot
   }
 elif [[ -x $(which initctl) ]]; then
   start() {
@@ -289,9 +288,15 @@ alias curl='noglob curl'
 alias wget='noglob wget'
 
 alias sudo='sudo '
+[[ -x $(which most) ]] && \
+    alias less='most' && \
+    alias more='most'
 
+
+# Wicked lazy virtualenvwrapper code.
 export WORKON_HOME=~/.virtualenvs
-[[ -f /usr/bin/virtualenvwrapper.sh ]] && source /usr/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper_lazy.sh
+
 alias mkvirtualenv='mkvirtualenv -p python2.7'
 
 unlock() {

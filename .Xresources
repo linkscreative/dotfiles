@@ -41,18 +41,9 @@ urxvt*color7:    #C2C2C2
 
 
 URxvt.font: -*-terminus-*-*-*-*-12-*-*-*-*-*-iso10646-*
-URxvt.perl-ext-common: default,matcher,clipboard,url-select,keyboard-select
-URxvt.keysym.M-u:   perl:url-select:select_next
-URxvt.keysym.M-Escape:  perl:keyboard-select:activate
-URxvt.keysym.M-s:   perl:keyboard-select:search
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-URxvt.modifier: super
+URxvt.perl-ext-common: default,matcher,selection,clipboard
 URxvt.scrollBar: false
-URxvt.urlLauncher:      /usr/bin/xdg-open
-URxvt.clipboard.copycmd:  xclip -i -selection clipboard
-URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+URxvt.urlLauncher: xdg-open
 URxvt.matcher.button:   1
 URxvt.depth: 32
 urxvt*background: rgba:0000/0000/0000/dddd

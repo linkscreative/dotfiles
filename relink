@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+relink () {
+    old=$PWD/$1
+    new=~/$1
+    newdir=${new:h}
+    [[ -d $newdir ]] || mkdir -p $newdir
+    [[ -h $new ]] && unlink $new
+    [[ -f $new ]] && rm $new
+    ln -s $old $new && echo "linked $new -> $old"
+}
+
+while read x
+do  
+    relink $x
+done < MANIFEST
