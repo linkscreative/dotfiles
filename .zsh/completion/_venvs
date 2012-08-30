@@ -1,0 +1,7 @@
+#compdef workon rmvirtualenv showvirtualenv cpvirtualenv 
+dirs=()
+for d in $(ls $WORKON_HOME)
+do
+    [[ -d $WORKON_HOME/$d ]] && dirs=($dirs $d)
+done
+_arguments "1: :($dirs)"
