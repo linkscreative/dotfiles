@@ -213,7 +213,7 @@ unfunction zkbd_file; unset keyfile ret
 [[ -f /etc/lsb-release ]] && source /etc/lsb-release
 
 # Service stuff
-if [[ -x $(which systemctl) ]]; then  # not using systemd
+if [[ -x $(which systemctl) ]]; then  # using systemd
   start() {
     sudo systemctl start $1.service
   }
@@ -236,6 +236,14 @@ if [[ -x $(which systemctl) ]]; then  # not using systemd
 
   disable() {
     sudo systemctl disable $1.service
+  }
+  
+  poweroff() {
+    sudo systemctl poweroff
+  }
+
+  reboot() {
+    sudo systemctl reboot
   }
 elif [[ -x $(which initctl) ]]; then
   start() {
