@@ -41,7 +41,7 @@ urxvt*color7:    #C2C2C2
 
 
 URxvt.font: -*-terminus-*-*-*-*-12-*-*-*-*-*-iso10646-*
-URxvt.perl-ext-common: default,matcher,clipboard-osc,url-select,keyboard-select,selection,clipboard
+URxvt.perl-ext-common: default,matcher,selection,clipboard
 URxvt.scrollBar: false
 URxvt.urlLauncher: xdg-open
 URxvt.matcher.button:   1
