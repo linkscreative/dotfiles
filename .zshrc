@@ -287,20 +287,10 @@ alias sudo='sudo '
 
 # Wicked lazy virtualenvwrapper code.
 export WORKON_HOME=~/.virtualenvs
-typeset -g -A VENV_DEFAULTS
-VENV_DEFAULTS[mkvirtualenv]='-p python2.7'
-VENV_CMD=(workon mkvirtualenv rmvirtualenv showvirtualenv)
-VENV_PATH=/usr/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_SCRIPT=/usr/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper_lazy.sh
 
-loadvirtualenvwrapper() {
-    [[ -f "$VENV_PATH" ]] && source /usr/bin/virtualenvwrapper.sh || return 1
-    for c in $VENV_CMD
-    do
-        unalias $c
-        alias $c="$c $VENV_DEFAULTS[$c]"
-    done
-}
-for c in $VENV_CMD; alias "$c=loadvirtualenvwrapper; $c $VENV_DEFAULTS[$c]"
+alias mkvirtualenv='mkvirtualenv -p python2.7'
 
 unlock() {
     [[ -x $(which keychain) ]] && eval $(keychain --eval --agents gpg,ssh --nogui -Q -q ~/.ssh/id_rsa)
