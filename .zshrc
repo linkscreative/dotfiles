@@ -295,7 +295,8 @@ alias sudo='sudo '
 
 # Wicked lazy virtualenvwrapper code.
 export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper_lazy.sh
+export VENVW_SCRIPT=/usr/bin/virtualenvwrapper_lazy.sh
+[[ -f "$VENVW_SCRIPT" ]] && source $VENVW_SCRIPT
 
 alias mkvirtualenv='mkvirtualenv -p python2.7'
 
