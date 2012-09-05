@@ -1,16 +1,6 @@
-.tmux.conf
 .zshenv
 .zshrc
-.xinitrc
 .vimrc
-.ncmpcpp/config
 .zsh
-.i3status.conf
-.i3/config
-.i3/status.sh
-.xmonad/xmonad.hs
-.xmobarrc
-.Xresources
 .terminfo/r/rxvt-unicode
 .terminfo/r/rxvt-unicode-256color
-bin

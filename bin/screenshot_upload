@@ -1,7 +1,0 @@
-#!/bin/zsh
-source screenshot
-
-scp $filepath tealc:/files/screenshots
-export URL="http://files.blackflags.co.uk/screenshots/$filename"
-echo $URL | xclip -selection c
-xdg-open $URL

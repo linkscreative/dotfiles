@@ -210,82 +210,7 @@ unfunction zkbd_file; unset keyfile ret
 [[ -n "${key[CtrlLeft]}"    ]]  && bindkey  "${key[CtrlLeft]}"    backward-word
 [[ -n "${key[CtrlRight]}"   ]]  && bindkey  "${key[CtrlRight]}"   forward-word
 
-[[ -f /etc/lsb-release ]] && source /etc/lsb-release
-
-# Service stuff
-if [[ -x $(which systemctl) ]]; then  # using systemd
-  start() {
-    sudo systemctl start $1.service
-  }
-
-  restart() {
-    sudo systemctl restart $1.service
-  }
-
-  stop() {
-    sudo systemctl stop $1.service
-  }
-
-  enable() {
-    sudo systemctl enable $1.service
-  }
-
-  status() {
-    sudo systemctl status $1.service
-  }
-
-  disable() {
-    sudo systemctl disable $1.service
-  }
-  
-  poweroff() {
-    sudo systemctl poweroff
-  }
-
-  reboot() {
-    sudo systemctl reboot
-  }
-elif [[ -x $(which initctl) ]]; then
-  start() {
-    sudo initctl start $1
-  }
-  stop() {
-    sudo initctl stop $1
-  }
-  restart() {
-    sudo initctl restart $1
-  }
-  status() {
-    sudo initctl status $1
-  }
-elif [[ "$DISTRIB_ID" = "archlinux" ]]; then
-  start() {
-    sudo rc.d start $1
-  }
-
-  restart() {
-    sudo rc.d restart $1
-  }
-
-  stop() {
-    sudo rc.d stop $1
-  }
-else
-  start() {
-    sudo service $1 start
-  }
-  stop() {
-    sudo service $1 stop
-  }
-  restart() {
-    sudo service $1 restart
-  }
-fi
-
 setopt glob
-alias aria2c='noglob aria2c'
-alias curl='noglob curl'
-alias wget='noglob wget'
 
 alias sudo='sudo '
 [[ -x $(which most) ]] && \
@@ -295,7 +220,7 @@ alias sudo='sudo '
 
 # Wicked lazy virtualenvwrapper code.
 export WORKON_HOME=~/.virtualenvs
-export VENVW_SCRIPT=/usr/bin/virtualenvwrapper_lazy.sh
+export VENVW_SCRIPT=/usr/local/bin/virtualenvwrapper_lazy.sh
 [[ -f "$VENVW_SCRIPT" ]] && source $VENVW_SCRIPT
 
 alias mkvirtualenv='mkvirtualenv -p python2.7'
